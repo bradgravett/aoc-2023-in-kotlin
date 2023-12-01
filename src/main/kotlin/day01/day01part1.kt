@@ -15,7 +15,6 @@ fun day01part1(input: List<String>): Int {
 fun day01part2(input: List<String>): Int = input.fold(0) { sum, line ->
     val tensDigit = line.firstDigit()
     val onesDigit = line.lastDigit()
-    println("sum: $sum | tensDigit: $tensDigit | onesDigit: $onesDigit | line: $line")
     sum + (tensDigit * 10) + onesDigit
 }
 
