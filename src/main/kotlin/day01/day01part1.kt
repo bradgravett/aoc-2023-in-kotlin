@@ -15,14 +15,14 @@ fun day01part1(input: List<String>): Int {
 fun day01part2(input: List<String>): Int = input.fold(0) { sum, line ->
     val tensDigit = line.firstDigit()
     val onesDigit = line.lastDigit()
-
+    println("sum: $sum | tensDigit: $tensDigit | onesDigit: $onesDigit | line: $line")
     sum + (tensDigit * 10) + onesDigit
 }
 
 
 fun String.firstDigit(): Int {
-    val word = (findAnyOf(digitWords, 0, true) ?: (length to "0")).convertWordToDigit()
-    val number = findAnyOf(digits, 0, true) ?: (length to "0")
+    val word = (findAnyOf(digitWords, 0, true) ?: (length + 1 to "0")).convertWordToDigit()
+    val number = findAnyOf(digits, 0, true) ?: (length + 1 to "0")
 
     return when {
         word.first < number.first -> word.second.toInt()
@@ -32,8 +32,8 @@ fun String.firstDigit(): Int {
 }
 
 fun String.lastDigit(): Int {
-    val word = (findLastAnyOf(digitWords, length, true) ?: (0 to "0")).convertWordToDigit()
-    val number = findLastAnyOf(digits, length, true) ?: (0 to "0")
+    val word = (findLastAnyOf(digitWords, length, true) ?: (-1 to "0")).convertWordToDigit()
+    val number = findLastAnyOf(digits, length, true) ?: (-1 to "0")
 
     return when {
         word.first > number.first -> word.second.toInt()
