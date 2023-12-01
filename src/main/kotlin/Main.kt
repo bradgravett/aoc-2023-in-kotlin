@@ -7,8 +7,8 @@ fun main(args: Array<String>) {
     val puzzleInput = File("C:/work/AdventOfCode2023/src/main/kotlin/day01/puzzleInput.txt").bufferedReader().readLines()
     val part1TestInput = File("C:/work/AdventOfCode2023/src/main/kotlin/day01/part1TestInput.txt").bufferedReader().readLines()
     val part2TestInput = File("C:/work/AdventOfCode2023/src/main/kotlin/day01/part2TestInput.txt").bufferedReader().readLines()
-//    println("day 1 part 1 test: ${day01part1(part1TestInput)}")
-//    println("day 1 part 1 solution: ${day01part1(puzzleInput)}")
+    println("day 1 part 1 test: ${day01part1(part1TestInput)}")
+    println("day 1 part 1 solution: ${day01part1(puzzleInput)}")
     println("day 1 part 2 test: ${day01part2(part2TestInput)}")
     println("day 1 part 2 solution: ${day01part2(puzzleInput)}")
 }
