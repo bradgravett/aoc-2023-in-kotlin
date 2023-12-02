@@ -3,8 +3,8 @@ package day01
 val digitWords = arrayListOf("one", "two", "three", "four", "five", "six", "seven", "eight", "nine")
 val digits = arrayListOf("1", "2", "3", "4", "5", "6", "7", "8", "9")
 
-fun day01part1(input: List<String>): Int {
-    return input.fold(0) { sum, line ->
+fun part1(input: String): Int {
+    return input.lines().fold(0) { sum, line ->
         val firstDigit = line.find { it.isDigit() } ?: '0'
         val lastDigit = line.findLast { it.isDigit() } ?: '0'
         val concat = firstDigit.toString() + lastDigit.toString()
@@ -12,7 +12,7 @@ fun day01part1(input: List<String>): Int {
     }
 }
 
-fun day01part2(input: List<String>): Int = input.fold(0) { sum, line ->
+fun part2(input: String): Int = input.lines().fold(0) { sum, line ->
     val tensDigit = line.firstDigit()
     val onesDigit = line.lastDigit()
     sum + (tensDigit * 10) + onesDigit
