@@ -1,27 +1,36 @@
 package day02
 
-data class Round(val roundNumber: Int, val red: Int, val green: Int, val blue: Int) {
-    val isValid = red <= 12 && green <= 13 && blue <= 14
-}
+data class Round(val roundNumber: Int, val red: Int, val green: Int, val blue: Int)
 
 data class Game(val id: Int, val rounds: List<Round>) {
-    val isValid = rounds.fold(true) { accum, round ->
-        accum && round.isValid
-    }
+    val redMax = rounds.fold(0) { max, round -> maxOf(max, round.red) }
+    val greenMax = rounds.fold(0) { max, round -> maxOf(max, round.green) }
+    val blueMax = rounds.fold(0) { max, round -> maxOf(max, round.blue) }
+    val isValid = redMax <= 12 && greenMax <= 13 && blueMax <= 14
 }
 
 fun day02part1(input: String): Int {
     val allGames: MutableList<Game> = mutableListOf()
 
-    input.lines().forEach {
-        val gameId = it.substringBefore(':').drop(5)
+    input.lines().forEach { game ->
+        val gameId = game.substringBefore(':').drop(5).toInt()
 
-        val gameRounds = List(it.substringAfter(':').split(';').size) { index ->
+        val gameRounds = game.substringAfter(':').split(';').mapIndexed { index, round ->
 
-            Round(index, 0, 0, 0)
+            val results = round.split(',').associate {
+                val amount = it.filter { char -> char.isDigit() }
+                val color = it.filter { char -> char.isLetter() }
+                color to amount.toInt()
+            }
+
+            Round(index + 1, results["red"] ?: 0, results["green"] ?: 0, results["blue"] ?: 0)
         }
 
-        allGames.add(Game(gameId.toInt(), gameRounds))
+        allGames.add(Game(gameId, gameRounds))
     }
-    return allGames.fold(0) { sum, game -> sum + if (game.isValid) game.id else 0 }
+
+    return allGames.fold(0) { sum, game ->
+        println("sum: $sum | game: ${game.id} | isValid: ${game.isValid} | red: ${game.redMax} | green: ${game.greenMax} | blue: ${game.blueMax}")
+        sum + if (game.isValid) game.id else 0
+    }
 }
