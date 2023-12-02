@@ -8,4 +8,4 @@ val part2TestInput = """
     4nineeightseven2
     zoneight234
     7pqrstsixteen
-""".trimIndent()
+""".trimIndent().lines()

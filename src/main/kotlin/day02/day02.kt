@@ -9,10 +9,10 @@ data class Game(val id: Int, val rounds: List<Round>) {
     val isValid = redMax <= 12 && greenMax <= 13 && blueMax <= 14
 }
 
-fun part1(input: String): Int {
+fun part1(input: List<String>): Int {
     val allGames: MutableList<Game> = mutableListOf()
 
-    input.lines().forEach { game ->
+    input.forEach { game ->
         val gameId = game.substringBefore(':').drop(5).toInt()
 
         val gameRounds = game.substringAfter(':').split(';').mapIndexed { index, round ->
@@ -30,4 +30,8 @@ fun part1(input: String): Int {
     }
 
     return allGames.fold(0) { sum, game -> sum + if (game.isValid) game.id else 0 }
+}
+
+fun part2(input: List<String>): Int {
+    return 0
 }

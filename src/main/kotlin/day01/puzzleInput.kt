@@ -1001,4 +1001,4 @@ val puzzleInput = """
     drkdbmv4zbjbznsqtj
     eightbqfhnmvqsoneninezbrzcqkz4ftv
     1eightcrcjcbdthreebscfpvznqfrj6
-""".trimIndent()
+""".trimIndent().lines()
